@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-     Copyright (C) 2023 crDroid Android Project
+     Copyright (C) 2024 crDroid Android Project
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -15,89 +15,55 @@
      limitations under the License.
 -->
 <PreferenceScreen
-    android:title="@string/qs_header_image_title"
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings">
+    xmlns:settings="http://schemas.android.com/apk/res/com.android.settings"
+    android:title="@string/qs_header_image_title">
 
-    <SwitchPreferenceCompat
-        android:key="qs_header_image_enabled"
-        android:title="@string/qs_header_image_enabled_title"
-        android:summary="@string/qs_header_image_enabled_summary"
+    <com.evolution.settings.preference.SystemSettingMainSwitchPreference
+        android:key="status_bar_custom_header"
+        android:title="@string/enable"
         android:defaultValue="false" />
 
-    <Preference
-        android:key="qs_header_image"
-        android:title="@string/qs_header_image_title"
-        android:summary="@string/qs_header_image_summary"
-        android:dependency="qs_header_image_enabled"
-        android:fragment="com.evolution.settings.fragments.qs.QsHeaderImageStyles" />
-
-    <Preference
-        android:key="qs_header_image_uri"
-        android:title="@string/file_header_select_title"
-        android:summary="@string/file_header_select_summary"
+    <ListPreference
+        android:key="qs_header_provider"
+        android:title="@string/qs_header_provider_title"
         android:persistent="false"
-        android:dependency="qs_header_image_enabled" />
+        android:entries="@array/qs_header_provider_entries"
+        android:entryValues="@array/qs_header_provider_values"
+        android:dependency="status_bar_custom_header" />
 
-    <com.evolution.settings.preference.SystemSettingListPreference
-        android:key="qs_header_image_tint"
-        android:title="@string/qs_header_image_tint_title"
-        android:entries="@array/qs_header_image_tint_entries"
-        android:dependency="qs_header_image_enabled"
-        android:entryValues="@array/qs_header_image_tint_values"
-        android:defaultValue="0" />
+    <ListPreference
+        android:key="daylight_header_pack"
+        android:title="@string/qs_header_daylight_pack_title"
+        android:persistent="false"
+        android:dependency="status_bar_custom_header" />
 
-    <com.evolution.settings.preference.colorpicker.ColorPickerPreference
-        android:key="qs_header_image_tint_custom"
-        android:title="@string/qs_header_image_tint_custom_title"
-        android:dependency="qs_header_image_enabled"
-        android:defaultValue="0xffffffff" />
+    <Preference
+        android:key="custom_header_browse"
+        android:title="@string/qs_header_browse_title"
+        android:summary="@string/qs_header_browse_summary"
+        android:persistent="false"
+        android:dependency="status_bar_custom_header" >
+        <intent android:action="android.intent.action.MAIN"
+                android:targetPackage="org.omnirom.omnistyle"
+                android:targetClass="org.omnirom.omnistyle.PickHeaderActivity" />
+    </Preference>
 
-    <com.evolution.settings.preference.SystemSettingSeekBarPreference
-        android:key="qs_header_image_alpha"
-        android:title="@string/qs_header_image_alpha_title"
-        android:max="255"
-        settings:min="0"
-        android:dependency="qs_header_image_enabled"
-        android:defaultValue="255" />
-
-    <com.evolution.settings.preference.SystemSettingSeekBarPreference
-        android:key="qs_header_image_height_portrait"
-        android:title="@string/qs_header_image_height_portrait_title"
-        android:max="550"
-        settings:min="50"
-        android:defaultValue="325"
-        android:dependency="qs_header_image_enabled" />
-
-    <com.evolution.settings.preference.SystemSettingSwitchPreference
-        android:key="qs_header_image_landscape_enabled"
-        android:title="@string/qs_header_image_landscape_enabled_title"
-        android:summary="@string/qs_header_image_landscape_enabled_summary"
-        android:dependency="qs_header_image_enabled"
-        android:defaultValue="false" />
+    <Preference
+        android:key="file_header_select"
+        android:title="@string/qs_header_file_select_title"
+        android:summary="@string/qs_header_file_select_summary"
+        android:persistent="false"
+        android:dependency="status_bar_custom_header" >
+    </Preference>
 
     <com.evolution.settings.preference.SystemSettingSeekBarPreference
-        android:key="qs_header_image_height_landscape"
-        android:title="@string/qs_header_image_height_landscape_title"
-        android:max="400"
-        settings:min="50"
-        android:defaultValue="200"
-        android:dependency="qs_header_image_landscape_enabled" />
-
-    <com.evolution.settings.preference.SystemSettingSeekBarPreference
-        android:key="qs_header_image_padding_side"
-        android:title="@string/qs_header_image_padding_side_title"
-        android:max="100"
-        settings:min="-100"
-        android:dependency="qs_header_image_enabled"
-        android:defaultValue="-50" />
-
-    <com.evolution.settings.preference.SystemSettingSeekBarPreference
-        android:key="qs_header_image_padding_top"
-        android:title="@string/qs_header_image_padding_top_title"
-        android:max="150"
-        settings:min="-20"
-        android:dependency="qs_header_image_enabled"
-        android:defaultValue="0" />
+        android:key="status_bar_custom_header_shadow"
+        android:title="@string/qs_header_shadow_title"
+        android:summary="@string/qs_header_shadow_summary"
+        android:max="200"
+        android:min="0"
+        android:defaultValue="0"
+        android:dependency="status_bar_custom_header" />
 
 </PreferenceScreen>

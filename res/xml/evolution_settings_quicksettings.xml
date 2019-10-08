@@ -74,7 +74,6 @@
 
     </PreferenceCategory>
 
-    <!--
     <PreferenceCategory
         android:title="@string/qs_header_category_title">
 
@@ -85,7 +84,6 @@
             android:fragment="com.evolution.settings.fragments.quicksettings.QsHeaderImageSettings" />
 
     </PreferenceCategory>
-    -->
 
     <PreferenceCategory
         android:title="@string/battery_title">
