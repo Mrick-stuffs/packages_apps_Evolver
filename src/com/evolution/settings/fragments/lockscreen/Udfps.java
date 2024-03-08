@@ -50,6 +50,7 @@ import androidx.preference.TwoStatePreference;
 
 import com.android.internal.logging.nano.MetricsProto.MetricsEvent;
 import com.android.internal.util.evolution.EvolutionUtils;
+import com.evolution.settings.fragments.lockscreen.UdfpsIconPicker;
 
 import com.android.settings.R;
 import com.android.settings.Utils;
@@ -69,13 +70,16 @@ public class Udfps extends DashboardFragment implements
     private static final String TAG = "Udfps";
 
     private static final String UDFPS_CUSTOMIZATION = "udfps_customization";
+    private static final String KEY_UDFPS_ICONS = "udfps_icon_picker";
 
     private PreferenceCategory mUdfpsCustomization;
+    private Preference mUdfpsIcons;
 
     @Override
     protected int getPreferenceScreenResId() {
         return R.xml.evolution_settings_udfps;
     }
+
 
     @Override
     public void onCreate(Bundle icicle) {
@@ -89,6 +93,13 @@ public class Udfps extends DashboardFragment implements
         mUdfpsCustomization = (PreferenceCategory) findPreference(UDFPS_CUSTOMIZATION);
         if (!udfpsResPkgInstalled) {
             prefScreen.removePreference(mUdfpsCustomization);
+        }
+
+         final boolean udfpsResIconPkgInstalled = EvolutionUtils.isPackageInstalled(getContext(),
+                "com.evolution.udfps.icons");
+        mUdfpsIcons = (Preference) findPreference(KEY_UDFPS_ICONS);
+        if (!udfpsResIconPkgInstalled) {
+            prefScreen.removePreference(mUdfpsIcons);
         }
     }
 

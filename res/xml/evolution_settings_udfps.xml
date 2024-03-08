@@ -28,13 +28,13 @@
         android:key="udfps_customization"
         android:title="@string/udfps_customization">
 
-        <!--
         <Preference
             android:key="udfps_icon_picker"
             android:title="@string/udfps_icon_picker_title"
             android:summary="@string/udfps_icon_picker_summary"
             android:fragment="com.evolution.settings.fragments.lockscreen.UdfpsIconPicker" />
 
+        <!--
         <com.evolution.settings.preference.SystemSettingSwitchPreference
             android:key="custom_fp_icon_enabled"
             android:title="@string/custom_fp_icon_title"
